@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--
+    1、绑定监听
+        v-on:xxx = 'fun'
+        @xxx='fun'
+        @xxx='fun(参数)'
+        默认事件形参：event
+        隐含属性对象：$event
+    2、
+-->
+
+<div id="demo">
+    <h2>1、绑定监听</h2>
+        <button @click="test1">不传参数</button>
+        <button @click="test2('hahha')">传入参数</button>
+        <button @click="test3">不传参数，默认 $event</button>
+        <button @click="test4('123', $event)">传参数、$event</button>
+
+
+    <h2>2、事件修饰符</h2>
+    <div style="width: 200px; height: 200px; background: red" @click="test5">
+        <!-- @click.stop 阻止事件冒泡 -->
+        <div style="width: 100px; height: 100px; background: blue" @click.stop="test6"></div>
+    </div>
+    <!-- @click.prevent 阻止事件的默认行为 -->
+    <a href="http://www.baidu.com" @click.prevent="test7">去百度</a>
+
+    <h2>3、按键修饰符</h2>
+    <!-- @keyup.13：enter 抬起触发，也可以写英文： @keyup.enter -->
+    <input type="text" @keyup.13="test8">
+    <input type="text" @keyup.enter="test8">
+
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<script type="text/javascript">
+    new Vue({
+        el: '#demo'
+        , data: {
+            test1(){
+                alert(1)
+            },
+            test2(msg){
+                alert(msg)
+            },
+            test3(event){
+                alert(event.target.innerHTML)
+            },
+            test4(num, event){
+                alert(num + '--' + event.target.innerHTML)
+            },
+            test5(){
+                alert('外面！')
+            },
+            test6(){
+                alert('里面！')
+            },
+            test7(){
+                alert('点击了！')
+            },
+            test8(event){
+
+                alert(event.target.value)
+            }
+        }
+    })
+</script>
+
+
+</body>
+</html>

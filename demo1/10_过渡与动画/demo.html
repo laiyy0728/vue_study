@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .xxx-enter-active, .xxx-leave-avtive{
+            transition: opacity 1s;
+        }
+        .xxx-enter, .xxx-leave-to{
+            opacity: 0;
+        }
+
+        .yyy-enter-active{
+            transition: all 2s;
+        }
+        .yyy-leave-avtive{
+            transition: all 3s;
+        }
+        .yyy-enter, .yyy-leave-to{
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .zzz-enter-active {
+            animation: bounce-in .5s;
+        }
+        .zzz-leave-active {
+            animation: bounce-in .5s reverse;
+        }
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!--
+1. vue动画的理解
+  操作css的trasition或animation
+  vue会给目标元素添加/移除特定的class
+2. 基本过渡动画的编码
+  1). 在目标元素外包裹<transition name="xxx">
+  2). 定义class样式
+    1>. 指定过渡样式: transition
+    2>. 指定隐藏时的样式: opacity/其它
+3. 过渡的类名
+  xxx-enter-active: 指定显示的transition
+  xxx-leave-active: 指定隐藏的transition
+  xxx-enter: 指定隐藏时的样式
+-->
+
+
+<div id="test1">
+    <button @click="isShow=!isShow">toggle</button>
+    <transition name="xxx">
+        <p v-show="isShow">hello</p>
+    </transition>
+</div>
+
+<div id="test2">
+    <button @click="isShow=!isShow">toggle</button>
+    <transition name="yyy">
+        <p v-show="isShow">hello</p>
+    </transition>
+</div>
+
+<div id="test3">
+    <button @click="isShow=!isShow">toggle</button><br />
+    <transition name="zzz">
+        <p v-show="isShow" style="display: inline-block">hello</p>
+    </transition>
+</div>
+
+
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<script type="text/javascript">
+    new Vue({
+        el: '#test1',
+        data: {
+            isShow: true
+        }
+    })
+
+
+    new Vue({
+        el: '#test2',
+        data: {
+            isShow: true
+        }
+    })
+
+    new Vue({
+        el: '#test3',
+        data: {
+            isShow: true
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .aClass {
+            color: red;
+        }
+        .bClass {
+            color: blue
+        }
+        .cClass {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!--
+    1、理解
+        在应用界面中，某个、某些元素的样式是变化的
+        class/style 绑定就是专门用来实现动态样式效果的技术
+    2、class 绑定：  :class='xxx'
+            xxx 可以是字符串、对象、数组
+    3、style 绑定
+        :style="{color: color1, fontSize: fontSize+'pc'}"
+        需要注意：color1、fontSize 都是 data 属性
+-->
+
+<div id="demo">
+    <h2> 1、class 绑定：  :class='xxx'</h2>
+    <p :class="a" class="cClass">测试 class 绑定字符串</p>
+    <p :class="{aClass: isA, bClass: isB}">测试 class 绑定对象</p>
+
+    <p :class="arr">测试 class 绑定数组</p>
+
+
+    <h2> 2、style 绑定</h2>
+    <p :style="{color: activeColor, fontSize: fontSize+'px'}">测试 style 绑定</p>
+
+
+
+    <button @click="update">更新</button>
+</div>
+
+
+<script type="text/javascript" src="../js/vue.js"></script>
+
+<script type="text/javascript">
+    new Vue({
+        el: '#demo',
+        data: {
+            a: 'aClass',
+            isA: true,
+            isB: false,
+            arr: ['aClass', 'cClass'],
+            activeColor: 'red',
+            fontSize: 20
+        },
+        methods: {
+            update() {
+                this.a = 'bClass';
+                this.isA = false;
+                this.isB = true;
+                this.arr = ['bClass'];
+                this.activeColor = 'blue';
+                this.fontSize = 30
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

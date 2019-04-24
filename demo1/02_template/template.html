@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--
+    1、模板的理解：
+        动态的 html 页面
+        包含了一些 JS 语法代码
+            双大括号表达式
+            指令（以 v 开头的自定义标签属性）
+     2、双大括号表达式
+            语法：{{wxp}}
+            功能：向页面输出数据
+            可以调用对象的方法
+    3、 指令一：强制数据绑定
+            功能：指定变化的属性值
+            语法：
+                v-bind: xxx='yyy'
+                :xxx=yyy
+    4、指令二：绑定事件监听
+            功能：绑定指定事件名的回调函数
+            语法：
+                v-on:click='xxx'
+                @click='xxx'
+-->
+
+<div id="app">
+    <h2>1、双大括号表达式</h2>
+        <h3>双括号：{{msg}}</h3>
+        <h3>转为大写：{{msg.toUpperCase()}}</h3>
+        <h3 v-text="msg"></h3>
+        <h3 v-html="msg"></h3>  <!-- v-html 会将绑定信息尽可能理解为一个 html 标签 -->
+    <h2>2、指令一：强制数据绑定</h2>
+    <img v-bind:src="imgUrl" alt="">
+    <img :src="imgUrl" alt="">
+<!--  省略 v-bind 在属性前加应为 ： 即可  -->
+    <h2>3、指令二：绑定事件监听</h2>
+    <button v-on:click="test">vue 事件绑定！-- v-on 语法</button>
+    <button @click="test2('@绑定！')">vue 事件绑定！-- @ 语法</button>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: '#app'
+        , data: {
+            msg: "<a href='https://www.baidu.com'>百度一下</a>",
+            imgUrl : 'https://vuejs.org/images/logo.png'
+        },
+        methods: {
+            test() {
+                alert('vue 事件绑定！')
+            },
+            test2(content){
+                alert(content)
+            }
+        }
+    })
+
+</script>
+
+</body>
+</html>

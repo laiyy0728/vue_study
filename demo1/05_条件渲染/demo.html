@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--
+    条件渲染指令：
+    v-if
+    v-else
+    v-show
+
+
+    比较 v-if / v-show
+
+    v-if：标签移除
+    v-show：通过 display 样式控制是否显示
+    如果需要频繁切换，v-show 更好
+-->
+
+<div id="demo">
+    <p v-if="ok">成功了！</p>
+    <p v-else="">失败了....</p>
+
+    <p v-show="ok">v-show  成功了！</p>
+    <p v-show="!ok">v-show  失败了。。。</p>
+
+    <button @click="ok=!ok">切换！</button>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+
+
+<script type="text/javascript">
+
+    new Vue({
+        el: '#demo',
+        data: {
+            ok: true
+        }
+    })
+
+</script>
+</body>
+</html>
