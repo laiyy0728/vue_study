@@ -28,6 +28,8 @@
   import Header from './components/TodoHeader'
   import List from './components/TodoList'
 
+  import util from './util/StorageUtil'
+
   export default {
 
     data() {
@@ -42,7 +44,7 @@
 
         // 2、缓存
         // 从 localstorage 中读取 todos
-        todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')
+        todos: util.readTodos()
       }
     },
 
@@ -50,10 +52,11 @@
     watch: {
       todos: {
         deep: true, // 开启深度监视
-        handler: function (newValue) {
-          // 将最新的值，保存到 localStorage
-          window.localStorage.setItem('todos_key', JSON.stringify(newValue))
-        }
+        // handler: function (newValue) {
+        //   // 将最新的值，保存到 localStorage
+        //   util.saveTodos(newValue)
+        // }
+        handler: util.saveTodos
       }
     },
 
